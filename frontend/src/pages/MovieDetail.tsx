@@ -14,10 +14,89 @@ import {
   Share2,
   Zap
 } from 'lucide-react';
+
+const trailerMap: Record<string, string> = {
+  'pushpa 2: the rule': 'https://www.youtube.com/embed/1kVPXs35vqo',
+  'stree 2': 'https://www.youtube.com/embed/7W6sW4c4pNo',
+  'kalki 2898 ad': 'https://www.youtube.com/embed/y1-w1Z0y480',
+  'jawan': 'https://www.youtube.com/embed/MWO67Vx8WBs',
+  'animal': 'https://www.youtube.com/embed/Dydmpzqxy4E',
+  'rrr': 'https://www.youtube.com/embed/f_vbAtFPiHc',
+  'baahubali 2: the conclusion': 'https://www.youtube.com/embed/qD-6d8bbybY',
+  'k.g.f: chapter 2': 'https://www.youtube.com/embed/t3X90_n824U',
+  'kgf: chapter 2': 'https://www.youtube.com/embed/t3X90_n824U',
+  'kantara': 'https://www.youtube.com/embed/557-L0L24jU',
+  'vikram': 'https://www.youtube.com/embed/OKBMCL-yOUg',
+  'leo': 'https://www.youtube.com/embed/co7t4c120i8',
+  'theri': 'https://www.youtube.com/embed/co7t4c120i8',
+  'jailer': 'https://www.youtube.com/embed/xenOE1T_0m0',
+  '3 idiots': 'https://www.youtube.com/embed/K0eEbXa9kP8',
+  'dangal': 'https://www.youtube.com/embed/x_7YlGv9u1g',
+  'pk': 'https://www.youtube.com/embed/82ZzE4-K18s',
+  'bajrangi bhaijaan': 'https://www.youtube.com/embed/vyX4ToL_4iE',
+  'drishyam 2': 'https://www.youtube.com/embed/CxR0Nq_m8J0',
+  'pathaan': 'https://www.youtube.com/embed/vMdgR3b1zT0',
+  'gadar 2': 'https://www.youtube.com/embed/zhWlWn2x690',
+  'pushpa: the rise': 'https://www.youtube.com/embed/Q1NKMPhP8PY',
+  'baahubali: the beginning': 'https://www.youtube.com/embed/3NQRhEaFyd0',
+  'classic world hit 21': 'https://www.youtube.com/embed/3NQRhEaFyd0'
+};
+
+const getEmbedUrl = (input: string) => {
+  if (!input) return 'https://www.youtube.com/embed/Way9Dexny3w?autoplay=1'; // Fallback to Dune: Part Two trailer
+
+  // If it's a youtube embed link already
+  if (input.includes('youtube.com/embed/')) {
+    return input.includes('?') ? `${input}&autoplay=1` : `${input}?autoplay=1`;
+  }
+
+  // Parse youtube watch link e.g. https://www.youtube.com/watch?v=1kVPXs35vqo or https://youtu.be/1kVPXs35vqo
+  let videoId = '';
+  if (input.includes('youtube.com/watch')) {
+    const urlParams = new URLSearchParams(input.split('?')[1]);
+    videoId = urlParams.get('v') || '';
+  } else if (input.includes('youtu.be/')) {
+    videoId = input.split('youtu.be/')[1]?.split('?')[0] || '';
+  }
+
+  if (videoId) {
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  }
+
+  // Check if it matches a known title
+  const lowerTitle = input.trim().toLowerCase();
+  if (trailerMap[lowerTitle]) {
+    return `${trailerMap[lowerTitle]}?autoplay=1`;
+  }
+
+  // Handle fuzzy title matches
+  for (const [title, url] of Object.entries(trailerMap)) {
+    if (lowerTitle.includes(title) || title.includes(lowerTitle)) {
+      return `${url}?autoplay=1`;
+    }
+  }
+
+  // Fallback to generating a pseudo-random movie trailer from classics based on ID or index
+  const fallbacks = [
+    'https://www.youtube.com/embed/JfVOs4VSpmA?autoplay=1', // Spider-Man: No Way Home
+    'https://www.youtube.com/embed/Way9Dexny3w?autoplay=1', // Dune: Part Two
+    'https://www.youtube.com/embed/TcMBFSGVi1c?autoplay=1', // Avengers: Endgame
+    'https://www.youtube.com/embed/YoHD9XEInc0?autoplay=1', // Inception
+    'https://www.youtube.com/embed/8Qn_spdM5Zg?autoplay=1', // Interstellar
+  ];
+  let hash = 0;
+  for (let i = 0; i < input.length; i++) {
+    hash = input.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % fallbacks.length;
+  return fallbacks[index];
+};
+
 const MovieDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [movie, setMovie] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -189,7 +268,11 @@ const MovieDetail: React.FC = () => {
               <Link to={`/book/${id}`} className="btn-primary" style={{ width: '100%', padding: '1.25rem', fontSize: '1.2rem', textAlign: 'center', textDecoration: 'none', borderRadius: '16px' }}>
                 Select Showtimes
               </Link>
-              <button className="btn-glass" style={{ width: '100%', padding: '1.25rem', borderRadius: '16px', fontSize: '1.1rem' }}>
+              <button 
+                onClick={() => setShowTrailer(true)} 
+                className="btn-glass" 
+                style={{ width: '100%', padding: '1.25rem', borderRadius: '16px', fontSize: '1.1rem' }}
+              >
                 Watch Trailer <Play size={18} fill="currentColor" />
               </button>
             </div>
@@ -212,6 +295,72 @@ const MovieDetail: React.FC = () => {
 
       <Footer />
       
+      {showTrailer && (
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0, 0, 0, 0.85)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            backdropFilter: 'blur(8px)',
+          }} 
+          onClick={() => setShowTrailer(false)}
+        >
+          <div 
+            style={{
+              position: 'relative',
+              width: '90%',
+              maxWidth: '900px',
+              aspectRatio: '16/9',
+              background: '#000',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+            }} 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              style={{
+                position: 'absolute',
+                top: '15px',
+                right: '15px',
+                background: 'rgba(255, 255, 255, 0.2)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '36px',
+                height: '36px',
+                fontSize: '1.2rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'background 0.2s',
+                zIndex: 10
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'}
+              onClick={() => setShowTrailer(false)}
+            >
+              ✕
+            </button>
+            <iframe
+              width="100%"
+              height="100%"
+              src={getEmbedUrl(movie.trailerUrl || movie.title)}
+              title={`${movie.title} Trailer`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={{ border: 'none' }}
+            ></iframe>
+          </div>
+        </div>
+      )}
+
       <style>{`
         .movie-header {
           @media (max-width: 968px) {

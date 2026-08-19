@@ -24,27 +24,27 @@ INSERT INTO users (name, email, password, phone, created_at) VALUES
 ('Rajeev Mehra', 'rajeev@example.com', 'pass123', '9999999999', CURRENT_TIMESTAMP);
 
 -- 3. Movies (Actual Hits with Verified TMDB Posters)
-INSERT INTO movies (title, description, genre, language, duration_minutes, rating, release_date, poster_url) VALUES 
-('Pushpa 2: The Rule', 'The rule of Pushpa Raj.', 'Action', 'Telugu', 165, 9.2, '2024-12-05', 'https://image.tmdb.org/t/p/original/bhxZj3y59cK7JtGdV285dhDRaMe.jpg'),
-('Stree 2', 'Sarkata returns to Chanderi.', 'Horror/Comedy', 'Hindi', 147, 8.5, '2024-08-15', 'https://image.tmdb.org/t/p/original/nfnhwfUEFuSOxxf4jDdBlY6Lccw.jpg'),
-('Kalki 2898 AD', 'The battle for the future.', 'Sci-Fi/Action', 'Telugu', 181, 8.1, '2024-06-27', 'https://image.tmdb.org/t/p/original/4P3K5medethmTlsuN7UN5bmnATq.jpg'),
-('Jawan', 'A social thriller of a man determined to rectify wrongs.', 'Action', 'Hindi', 169, 7.8, '2023-09-07', 'https://image.tmdb.org/t/p/original/gTV8RAYEKDcRwn4TFbUZfRk5Nsj.jpg'),
-('Animal', 'A gripping father-son obsession drama.', 'Action/Drama', 'Hindi', 201, 7.6, '2023-12-01', 'https://image.tmdb.org/t/p/original/14zedCaF044yj3at1TJ2uHpaNQD.jpg'),
-('RRR', 'Tale of two legendary revolutionaries.', 'Action', 'Telugu', 187, 8.7, '2022-03-25', 'https://image.tmdb.org/t/p/original/nEufeZlyAOLqO2brrs0yeF1lgXO.jpg'),
-('Baahubali 2: The Conclusion', 'The epic conclusion to the legendary saga.', 'Action/Drama', 'Telugu', 167, 8.8, '2017-04-28', 'https://image.tmdb.org/t/p/original/21sC2assImQIYCEDA84Qh9d1RsK.jpg'),
-('K.G.F: Chapter 2', 'Rocky’s supremacy challenged.', 'Action', 'Kannada', 168, 8.4, '2022-04-14', 'https://image.tmdb.org/t/p/original/au6Nq6kVr9NFICzpmYtMSyDA3Gi.jpg'),
-('Kantara', 'Justice for the village through ancestral roots.', 'Action/Drama', 'Kannada', 148, 8.2, '2022-09-30', 'https://image.tmdb.org/t/p/original/lqkaDoxdKC9PhLtIfAdAVCtQTvM.jpg'),
-('Vikram', 'Special Ops hunting a masked serial killer.', 'Action/Thriller', 'Tamil', 175, 8.3, '2022-06-03', 'https://image.tmdb.org/t/p/original/774UV1aCURb4s4JfEFg3IEMu5Zj.jpg'),
-('Leo', 'A hero hiding from a dangerous past.', 'Action', 'Tamil', 164, 7.3, '2023-10-19', 'https://image.tmdb.org/t/p/original/t1oAdt8JjUs4sHEBvE8fKtjV7er.jpg'),
-('Jailer', 'A retired jailer goes on a manhunt.', 'Action', 'Tamil', 168, 7.5, '2023-08-10', 'https://image.tmdb.org/t/p/original/p933oBZpchdX8KA29gPVKBxGlyU.jpg'),
-('3 Idiots', 'Chasing excellence with Rancho.', 'Comedy/Drama', 'Hindi', 170, 8.4, '2009-12-25', 'https://image.tmdb.org/t/p/original/66A9MqXOyVFCssoloscw79z8Tew.jpg'),
-('Dangal', 'The wrestling legacy.', 'Sport/Drama', 'Hindi', 161, 8.3, '2016-12-23', 'https://image.tmdb.org/t/p/original/3n8888uKuaxPBBuDUqJhfhrWlgA.jpg'),
-('PK', 'A stranger logic about god.', 'Comedy/Sci-Fi', 'Hindi', 153, 8.1, '2014-12-19', 'https://image.tmdb.org/t/p/original/uqoAHhuKZnWxzXbXSUycgpLPmUW.jpg'),
-('Bajrangi Bhaijaan', 'A journey of innocence across borders.', 'Drama', 'Hindi', 159, 8.1, '2015-07-17', 'https://image.tmdb.org/t/p/original/hGIlHgQC2RnS8xTlE3nuTDXanYC.jpg'),
-('Drishyam 2', 'The case reopens.', 'Thriller', 'Hindi', 140, 8.2, '2022-11-18', 'https://image.tmdb.org/t/p/original/pcuGo5KfNkGhftnb1uFEXCN4Gpa.jpg'),
-('Pathaan', 'Indian spy taking on a mercenary leader.', 'Action/Thriller', 'Hindi', 146, 7.1, '2023-01-25', 'https://image.tmdb.org/t/p/original/m1b97ofvnYpCH9uGguML986eUfS.jpg'),
-('Gadar 2', 'Tara Singh returning for his son.', 'Action/Drama', 'Hindi', 170, 7.5, '2023-08-11', 'https://image.tmdb.org/t/p/original/unmYQ3t03AnS492iE9rWwV35N7t.jpg'),
-('Pushpa: The Rise', 'The rise of a smuggler.', 'Action', 'Telugu', 179, 7.6, '2021-12-17', 'https://image.tmdb.org/t/p/original/oaRk2HgOirEeNuDCwwScmq7rKvS.jpg');
+INSERT INTO movies (title, description, genre, language, duration_minutes, rating, release_date, poster_url, trailer_url) VALUES 
+('Pushpa 2: The Rule', 'The rule of Pushpa Raj.', 'Action', 'Telugu', 165, 9.2, '2024-12-05', 'https://image.tmdb.org/t/p/original/bhxZj3y59cK7JtGdV285dhDRaMe.jpg', 'https://www.youtube.com/embed/1kVPXs35vqo'),
+('Stree 2', 'Sarkata returns to Chanderi.', 'Horror/Comedy', 'Hindi', 147, 8.5, '2024-08-15', 'https://image.tmdb.org/t/p/original/nfnhwfUEFuSOxxf4jDdBlY6Lccw.jpg', 'https://www.youtube.com/embed/7W6sW4c4pNo'),
+('Kalki 2898 AD', 'The battle for the future.', 'Sci-Fi/Action', 'Telugu', 181, 8.1, '2024-06-27', 'https://image.tmdb.org/t/p/original/4P3K5medethmTlsuN7UN5bmnATq.jpg', 'https://www.youtube.com/embed/y1-w1Z0y480'),
+('Jawan', 'A social thriller of a man determined to rectify wrongs.', 'Action', 'Hindi', 169, 7.8, '2023-09-07', 'https://image.tmdb.org/t/p/original/gTV8RAYEKDcRwn4TFbUZfRk5Nsj.jpg', 'https://www.youtube.com/embed/MWO67Vx8WBs'),
+('Animal', 'A gripping father-son obsession drama.', 'Action/Drama', 'Hindi', 201, 7.6, '2023-12-01', 'https://image.tmdb.org/t/p/original/14zedCaF044yj3at1TJ2uHpaNQD.jpg', 'https://www.youtube.com/embed/Dydmpzqxy4E'),
+('RRR', 'Tale of two legendary revolutionaries.', 'Action', 'Telugu', 187, 8.7, '2022-03-25', 'https://image.tmdb.org/t/p/original/nEufeZlyAOLqO2brrs0yeF1lgXO.jpg', 'https://www.youtube.com/embed/f_vbAtFPiHc'),
+('Baahubali 2: The Conclusion', 'The epic conclusion to the legendary saga.', 'Action/Drama', 'Telugu', 167, 8.8, '2017-04-28', 'https://image.tmdb.org/t/p/original/21sC2assImQIYCEDA84Qh9d1RsK.jpg', 'https://www.youtube.com/embed/qD-6d8bbybY'),
+('K.G.F: Chapter 2', 'Rocky’s supremacy challenged.', 'Action', 'Kannada', 168, 8.4, '2022-04-14', 'https://image.tmdb.org/t/p/original/au6Nq6kVr9NFICzpmYtMSyDA3Gi.jpg', 'https://www.youtube.com/embed/t3X90_n824U'),
+('Kantara', 'Justice for the village through ancestral roots.', 'Action/Drama', 'Kannada', 148, 8.2, '2022-09-30', 'https://image.tmdb.org/t/p/original/lqkaDoxdKC9PhLtIfAdAVCtQTvM.jpg', 'https://www.youtube.com/embed/557-L0L24jU'),
+('Vikram', 'Special Ops hunting a masked serial killer.', 'Action/Thriller', 'Tamil', 175, 8.3, '2022-06-03', 'https://image.tmdb.org/t/p/original/774UV1aCURb4s4JfEFg3IEMu5Zj.jpg', 'https://www.youtube.com/embed/OKBMCL-yOUg'),
+('Leo', 'A hero hiding from a dangerous past.', 'Action', 'Tamil', 164, 7.3, '2023-10-19', 'https://image.tmdb.org/t/p/original/t1oAdt8JjUs4sHEBvE8fKtjV7er.jpg', 'https://www.youtube.com/embed/co7t4c120i8'),
+('Jailer', 'A retired jailer goes on a manhunt.', 'Action', 'Tamil', 168, 7.5, '2023-08-10', 'https://image.tmdb.org/t/p/original/p933oBZpchdX8KA29gPVKBxGlyU.jpg', 'https://www.youtube.com/embed/xenOE1T_0m0'),
+('3 Idiots', 'Chasing excellence with Rancho.', 'Comedy/Drama', 'Hindi', 170, 8.4, '2009-12-25', 'https://image.tmdb.org/t/p/original/66A9MqXOyVFCssoloscw79z8Tew.jpg', 'https://www.youtube.com/embed/K0eEbXa9kP8'),
+('Dangal', 'The wrestling legacy.', 'Sport/Drama', 'Hindi', 161, 8.3, '2016-12-23', 'https://image.tmdb.org/t/p/original/3n8888uKuaxPBBuDUqJhfhrWlgA.jpg', 'https://www.youtube.com/embed/x_7YlGv9u1g'),
+('PK', 'A stranger logic about god.', 'Comedy/Sci-Fi', 'Hindi', 153, 8.1, '2014-12-19', 'https://image.tmdb.org/t/p/original/uqoAHhuKZnWxzXbXSUycgpLPmUW.jpg', 'https://www.youtube.com/embed/82ZzE4-K18s'),
+('Bajrangi Bhaijaan', 'A journey of innocence across borders.', 'Drama', 'Hindi', 159, 8.1, '2015-07-17', 'https://image.tmdb.org/t/p/original/hGIlHgQC2RnS8xTlE3nuTDXanYC.jpg', 'https://www.youtube.com/embed/vyX4ToL_4iE'),
+('Drishyam 2', 'The case reopens.', 'Thriller', 'Hindi', 140, 8.2, '2022-11-18', 'https://image.tmdb.org/t/p/original/pcuGo5KfNkGhftnb1uFEXCN4Gpa.jpg', 'https://www.youtube.com/embed/CxR0Nq_m8J0'),
+('Pathaan', 'Indian spy taking on a mercenary leader.', 'Action/Thriller', 'Hindi', 146, 7.1, '2023-01-25', 'https://image.tmdb.org/t/p/original/m1b97ofvnYpCH9uGguML986eUfS.jpg', 'https://www.youtube.com/embed/vMdgR3b1zT0'),
+('Gadar 2', 'Tara Singh returning for his son.', 'Action/Drama', 'Hindi', 170, 7.5, '2023-08-11', 'https://image.tmdb.org/t/p/original/unmYQ3t03AnS492iE9rWwV35N7t.jpg', 'https://www.youtube.com/embed/zhWlWn2x690'),
+('Pushpa: The Rise', 'The rise of a smuggler.', 'Action', 'Telugu', 179, 7.6, '2021-12-17', 'https://image.tmdb.org/t/p/original/oaRk2HgOirEeNuDCwwScmq7rKvS.jpg', 'https://www.youtube.com/embed/Q1NKMPhP8PY');
 
 -- Adding remaining to hit 100+ using consistent placeholders
 INSERT INTO movies (title, description, genre, language, duration_minutes, rating, release_date, poster_url) VALUES ('Classic World Hit 21', 'A legendary story that defined global cinema standards.', 'Drama', 'English', 131, 7.0, '2020-01-01', 'https://picsum.photos/seed/21/500/750');

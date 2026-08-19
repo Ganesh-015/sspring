@@ -28,5 +28,6 @@ public class Movie {
     private Double rating;
     private LocalDate releaseDate;
     private String posterUrl;
+    private String trailerUrl;
 
 }
