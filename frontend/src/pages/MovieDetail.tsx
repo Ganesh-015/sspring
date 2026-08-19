@@ -16,11 +16,11 @@ import {
 } from 'lucide-react';
 
 const trailerMap: Record<string, string> = {
-  'pushpa 2: the rule': 'https://www.youtube.com/embed/1kVPXs35vqo',
-  'stree 2': 'https://www.youtube.com/embed/7W6sW4c4pNo',
-  'kalki 2898 ad': 'https://www.youtube.com/embed/y1-w1Z0y480',
-  'jawan': 'https://www.youtube.com/embed/MWO67Vx8WBs',
-  'animal': 'https://www.youtube.com/embed/Dydmpzqxy4E',
+  'pushpa 2: the rule': 'https://www.youtube.com/embed/g3JUbgOHgdw',
+  'stree 2': 'https://www.youtube.com/embed/q6eB70V-b50',
+  'kalki 2898 ad': 'https://www.youtube.com/embed/y7niF1_Z3jM',
+  'jawan': 'https://www.youtube.com/embed/MW5E1pG8S5o',
+  'animal': 'https://www.youtube.com/embed/8PH1LPNA8kA',
   'rrr': 'https://www.youtube.com/embed/f_vbAtFPiHc',
   'baahubali 2: the conclusion': 'https://www.youtube.com/embed/qD-6d8bbybY',
   'k.g.f: chapter 2': 'https://www.youtube.com/embed/t3X90_n824U',
@@ -40,6 +40,18 @@ const trailerMap: Record<string, string> = {
   'pushpa: the rise': 'https://www.youtube.com/embed/Q1NKMPhP8PY',
   'baahubali: the beginning': 'https://www.youtube.com/embed/3NQRhEaFyd0',
   'classic world hit 21': 'https://www.youtube.com/embed/3NQRhEaFyd0'
+};
+
+const getWatchUrl = (embedUrl: string, title: string) => {
+  if (!embedUrl) return `https://www.youtube.com/results?search_query=${encodeURIComponent(title + ' official trailer')}`;
+  
+  if (embedUrl.includes('youtube.com/embed/')) {
+    const videoId = embedUrl.split('youtube.com/embed/')[1]?.split('?')[0];
+    if (videoId) {
+      return `https://www.youtube.com/watch?v=${videoId}`;
+    }
+  }
+  return embedUrl;
 };
 
 const getEmbedUrl = (input: string) => {
@@ -357,6 +369,34 @@ const MovieDetail: React.FC = () => {
               allowFullScreen
               style={{ border: 'none' }}
             ></iframe>
+
+            <div style={{
+              position: 'absolute',
+              bottom: '15px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'rgba(0, 0, 0, 0.75)',
+              padding: '8px 16px',
+              borderRadius: '20px',
+              fontSize: '0.85rem',
+              color: '#fff',
+              zIndex: 10,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              pointerEvents: 'auto',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}>
+              <span>Video not loading?</span>
+              <a 
+                href={getWatchUrl(movie.trailerUrl || getEmbedUrl(movie.trailerUrl || movie.title), movie.title)} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ color: 'var(--primary)', fontWeight: 700, textDecoration: 'underline' }}
+              >
+                Watch directly on YouTube
+              </a>
+            </div>
           </div>
         </div>
       )}
